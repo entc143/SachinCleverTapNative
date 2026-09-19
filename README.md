@@ -429,8 +429,8 @@ The application architecture enforces strict decoupled isolation protocols via t
 ### 2.1 Dashboard Identification Attributes (`clevertap.properties`)
 Core routing tokens are declared once inside the project root workspace config file and are automatically injected during build phases into the manifest as system placeholders:
 ```properties
-CLEVERTAP_ACCOUNT_ID=R57-R8W-557Z
-CLEVERTAP_TOKEN=0b2-a52
+CLEVERTAP_ACCOUNT_ID=xxxxxxxx
+CLEVERTAP_TOKEN=xxxxxxxx
 CLEVERTAP_REGION=eu1
 ```
 
