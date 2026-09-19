@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SachinCleverTapNative</string>
+    <string name="home_subtitle">CleverTap Native Android SDK sample</string>
+
+    <!-- Home buttons -->
+    <string name="btn_profile_set">Profile Set</string>
+    <string name="btn_event">Event</string>
+    <string name="btn_native_display">Native Display</string>
+
+    <!-- App Inbox -->
+    <string name="cd_inbox">Open App Inbox</string>
+    <string name="inbox_not_ready">App Inbox is still initializing, please try again in a moment</string>
+
+    <!-- Native Display screen -->
+    <string name="native_display_welcome">Welcome to Native Display</string>
+    <string name="native_display_waiting">Showing the default image. Native Display units from your CleverTap campaign will appear here.</string>
+    <string name="cd_default_image">Default Native Display image</string>
+    <string name="cd_display_unit_image">Native Display unit image</string>
+
+    <!-- Status line -->
+    <string name="status_idle">Tap a button to send data to CleverTap</string>
+    <string name="status_prefix">Last action: %1$s</string>
+
+    <!-- CleverTap push notification channel (also referenced from AndroidManifest.xml) -->
+    <string name="clevertap_default_channel_id" translatable="false">sachin_clevertap_default</string>
+    <string name="clevertap_default_channel_name">General notifications</string>
+    <string name="clevertap_default_channel_description">Offers, updates and alerts from SachinCleverTapNative</string>
+</resources>

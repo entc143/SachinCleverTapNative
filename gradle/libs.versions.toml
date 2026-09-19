@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# Gradle Version Catalog – single place to bump every SDK / dependency version.
+# ---------------------------------------------------------------------------
+[versions]
+# Android build tooling
+agp = "9.4.0"                 # Android Gradle Plugin (built-in Kotlin, requires Gradle 9.6+ and JDK 17+)
+compileSdk = "37"
+targetSdk = "37"
+minSdk = "23"                 # CleverTap Android SDK 8.1.0+ requires API 23 (Android 6.0)
+
+# CleverTap
+clevertap = "8.4.1"           # https://github.com/CleverTap/clevertap-android-sdk/blob/master/docs/CTCORECHANGELOG.md
+
+# Firebase / Google
+firebaseBom = "34.19.0"       # Firebase Android BoM – pins firebase-messaging
+googleServices = "4.5.0"      # com.google.gms.google-services Gradle plugin
+
+# AndroidX / UI
+coreKtx = "1.19.0"
+appcompat = "1.8.0"
+activityKtx = "1.13.0"
+constraintlayout = "2.2.2"
+material = "1.13.0"
+recyclerview = "1.4.0"        # required by CleverTap App Inbox
+viewpager = "1.1.0"           # required by CleverTap App Inbox
+glide = "4.16.0"              # required by CleverTap App Inbox; also used for Native Display images
+
+[libraries]
+# CleverTap core SDK (events, profiles, push, in-app, native display, app inbox)
+clevertap-android-sdk = { module = "com.clevertap.android:clevertap-android-sdk", version.ref = "clevertap" }
+
+# Firebase Cloud Messaging – version comes from the BoM
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
+
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-viewpager = { module = "androidx.viewpager:viewpager", version.ref = "viewpager" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+
+[bundles]
+# Everything CleverTap's built-in App Inbox UI needs on the app side.
+clevertap-inbox-ui = ["androidx-appcompat", "androidx-recyclerview", "androidx-viewpager", "material", "glide"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }

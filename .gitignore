@@ -1,0 +1,18 @@
+*.iml
+.gradle/
+.kotlin/
+build/
+local.properties
+.idea/
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Firebase config is environment specific – never commit it.
+app/google-services.json
+
+# Filled-in CleverTap credentials. Keep the committed file with empty values;
+# put real values in a local copy or in ~/.gradle/gradle.properties.
+# (Uncomment the next line if you prefer to keep credentials out of git entirely.)
+# clevertap.properties

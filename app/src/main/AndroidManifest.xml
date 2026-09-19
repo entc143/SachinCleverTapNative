@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Required by the CleverTap SDK to send events / profile data -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Recommended so CleverTap knows when a network call can be attempted -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Android 13+ runtime notification permission (requested in MainActivity) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:name=".SachinCleverTapApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SachinCleverTapNative"
+        tools:targetApi="34">
+
+        <!-- ================================================================
+             CleverTap credentials.
+             The ${...} placeholders are filled by app/build.gradle.kts from
+             <project-root>/clevertap.properties. Do NOT paste real values here.
+             ================================================================ -->
+        <meta-data
+            android:name="CLEVERTAP_ACCOUNT_ID"
+            android:value="${CLEVERTAP_ACCOUNT_ID}" />
+        <meta-data
+            android:name="CLEVERTAP_TOKEN"
+            android:value="${CLEVERTAP_TOKEN}" />
+        <!-- Empty value = default EU region. Otherwise in1 / us1 / sg1 / aps3 / mec1 -->
+        <meta-data
+            android:name="CLEVERTAP_REGION"
+            android:value="${CLEVERTAP_REGION}" />"
+
+        <!-- Small (alpha-only) status-bar icon used for CleverTap push notifications.
+             File name only, without the @drawable/ prefix. -->
+        <meta-data
+            android:name="CLEVERTAP_NOTIFICATION_ICON"
+            android:value="ic_stat_notification" />
+
+        <!-- Notification channel CleverTap falls back to when the push payload
+             does not carry a channel id. Created in SachinCleverTapApp. -->
+        <meta-data
+            android:name="CLEVERTAP_DEFAULT_CHANNEL_ID"
+            android:value="@string/clevertap_default_channel_id" />
+
+        <!-- ================================ UI ================================ -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SachinCleverTapNative">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.NativeDisplayActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
+            android:name=".ui.ProdExperienceActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <!-- ============================ Push (FCM) ============================
+             Our FirebaseMessagingService hands CleverTap payloads to the SDK so it
+             can render the notification and track Notification Viewed/Clicked.
+             ==================================================================== -->
+        <service
+            android:name=".notifications.CleverTapFcmService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Push click / deep-link tracking (CTPushNotificationReceiver) and the SDK's
+             In-App and App Inbox activities are declared in the CleverTap SDK's own
+             manifest and merged in automatically – nothing extra is needed here. -->
+
+    </application>
+
+</manifest>
